@@ -396,7 +396,7 @@ class discuz_application extends discuz_base{
 
 			if($this->session->get('groupid') == 6) {
 				$this->var['member']['groupid'] = 6;
-//				sysmessage('user_banned');
+				sysmessage('user_banned');
 			}
 
 			if($this->var['uid'] && !$sessionclose && ($this->session->isnew || ($this->session->get('lastactivity') + 600) < TIMESTAMP)) {
@@ -510,18 +510,18 @@ class discuz_application extends discuz_base{
 			$allowvisitflag = in_array(CURSCRIPT, array('member')) || defined('ALLOWGUEST') && ALLOWGUEST;
 			if($this->var['group'] && isset($this->var['group']['allowvisit']) && !$this->var['group']['allowvisit']) {
 				if($this->var['uid'] && !$allowvisitflag) {
-//					showmessage('user_banned');
+					showmessage('user_banned');
 				} elseif((!defined('ALLOWGUEST') || !ALLOWGUEST) && !in_array(CURSCRIPT, array('member', 'api')) && !$this->var['inajax']) {
 					dheader('location: member.php?mod=logging&action=login&referer='.rawurlencode($this->var['siteurl'].$this->var['basefilename'].($_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '')));
 				}
 			}
 			if(isset($this->var['member']['status']) && $this->var['member']['status'] == -1 && !$allowvisitflag) {
-//				showmessage('user_banned');
+				showmessage('user_banned');
 			}
 		}
 
 		if($this->var['setting']['ipaccess'] && !ipaccess($this->var['clientip'], $this->var['setting']['ipaccess'])) {
-//			showmessage('user_banned');
+			showmessage('user_banned');
 		}
 
 		if($this->var['setting']['bbclosed']) {
