@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*bbs头部*/
+#toptb										{ background:url(../../../static/image/common/center_top_bg.png) repeat-x;}
+#toptb .kaiser_top_mainbav					{ height:29px; line-height:29px; overflow:hidden; float:left;}
+#toptb .kaiser_top_mainbav b				{ height:29px; font-weight:normal; color:#cccccc; overflow:hidden; float:left;}
+#toptb .kaiser_top_mainbav b a				{ color:#666666; float:none;}
+#toptb .kaiser_top_mainbav b a:hover		{ color:#ff6633;}
+.y											{ margin-top:3px;}
+.kaiser_top_bg								{ width:100%; background:url(../../../static/image/common/bbs_bg.jpg) no-repeat center top;}
+.wp											{ width:980px;}
+#hd .wp										{ padding:33px 0 0 0;}
+.hdc										{ height:82px;}
+.bbs_nav_a p,
+.bbs_nav_b p,
+.bbs_nav_c p,
+.bbs_nav_d p	{ background:url(../../../static/image/common/bbs_nav_bg.jpg) no-repeat;}
+#nv				{ width:945px; height:61px; padding:15px 0 0 35px; background:url(../../../static/image/common/bbs_nav_box_bg.png) no-repeat; font-size:14px; line-height:24px; float:left;}
+#nv a			{ color:#FFFFFF;}
+#nv a:hover		{ text-decoration:underline;}
+.bbs_nav_a		{ width:243px; float:left;}
+.bbs_nav_a p	{ width:60px; height:46px; float:left; }
+.bbs_nav_b		{ width:243px; float:left;}
+.bbs_nav_b p	{ width:60px; height:46px; background-position:0 -46px ;float:left; }
+.bbs_nav_c		{ width:230px; float:left;}
+.bbs_nav_c p	{ width:60px; height:46px; background-position:0 -92px ;float:left; }
+.bbs_nav_d		{ width:210px; float:left;}
+.bbs_nav_d p	{ width:60px; height:46px; background-position:0 -138px ;float:left; }
+.kaiser_bm		{ background:#f7f7f7;}
+.bml .bm_h		{ background:none;}
+.pnc, a.pnc		{ background-color:#2499b1;}

@@ -26,6 +26,7 @@
 	<!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
 	<link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_{STYLEID}_css_diy.css?{VERHASH}" />
 	<!--{/if}-->
+    <link rel="stylesheet" type="text/css" href="/template/default/common/bbs_top.css" />
 </head>
 
 <body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
@@ -35,7 +36,7 @@
 	<!--{/if}-->
 	<!--{if check_diy_perm($topic)}-->
 		<!--{block diynav}-->
-			<a id="diy-tg" href="javascript:openDiy();" title="{lang open_diy}" class="xi1 xw1" onmouseover="showMenu(this.id)"><img src="{STATICURL}image/diy/panel-toggle.png" alt="DIY" /></a>
+			<a id="diy-tg" href="javascript:openDiy();" title="{lang open_diy}" class="xi1 xw1" onMouseOver="showMenu(this.id)"><img src="{STATICURL}image/diy/panel-toggle.png" alt="DIY" /></a>
 			<div id="diy-tg_menu" style="display: none;">
 				<ul>
 					<li><a href="javascript:saveUserdata('diy_advance_mode', '');openDiy();" class="xi2">{lang header_diy_mode_simple}</a></li>
@@ -58,21 +59,10 @@
 			<!--{hook/global_cpnav_top}-->
 			<div class="wp">
 				<div class="z">
-					<!--{loop $_G['setting']['topnavs'][0] $nav}-->
-						<!--{if $nav['available'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1))}-->$nav[code]<!--{/if}-->
-					<!--{/loop}-->
+					<div class="kaiser_top_mainbav"><b><a href="#">首 页</a>  |  <a href="#">参团游</a>  |  <a href="#">自由行</a><a href="#">主题度假</a>  |  <a href="#">个性定制</a>  |  <a href="#">签 证</a>  |  <a href="#">达人游记</a></b></div>
 					<!--{hook/global_cpnav_extra1}-->
 				</div>
 				<div class="y">
-					<a id="switchblind" href="javascript:;" onclick="toggleBlind(this)" title="{lang switch_blind}" class="switchblind">{lang switch_blind}</a>
-					<!--{hook/global_cpnav_extra2}-->
-					<!--{loop $_G['setting']['topnavs'][1] $nav}-->
-						<!--{if $nav['available'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1))}-->$nav[code]<!--{/if}-->
-					<!--{/loop}-->
-					<!--{if empty($_G['disabledwidthauto']) && $_G['setting']['switchwidthauto']}-->
-						<a href="javascript:;" onclick="widthauto(this)"><!--{if widthauto()}-->{lang switch_narrow}<!--{else}-->{lang switch_wide}<!--{/if}--></a>
-					<!--{/if}-->
-					<!--{if $_G['uid'] && !empty($_G['style']['extstyle'])}--><a id="sslct" href="javascript:;" onmouseover="delayShow(this, function() {showMenu({'ctrlid':'sslct','pos':'34!'})});">{lang changestyle}</a><!--{/if}-->
 					<!--{if check_diy_perm($topic)}-->
 						$diynav
 					<!--{/if}-->
@@ -83,9 +73,9 @@
 		<!--{if !IS_ROBOT}-->
 			<!--{if $_G['uid'] && !empty($_G['style']['extstyle'])}-->
 				<div id="sslct_menu" class="cl p_pop" style="display: none;">
-					<!--{if !$_G[style][defaultextstyle]}--><span class="sslct_btn" onclick="extstyle('')" title="{lang default}"><i></i></span><!--{/if}-->
+					<!--{if !$_G[style][defaultextstyle]}--><span class="sslct_btn" onClick="extstyle('')" title="{lang default}"><i></i></span><!--{/if}-->
 					<!--{loop $_G['style']['extstyle'] $extstyle}-->
-						<span class="sslct_btn" onclick="extstyle('$extstyle[0]')" title="$extstyle[1]"><i style='background:$extstyle[2]'></i></span>
+						<span class="sslct_btn" onClick="extstyle('$extstyle[0]')" title="$extstyle[1]"><i style='background:$extstyle[2]'></i></span>
 					<!--{/loop}-->
 				</div>
 			<!--{/if}-->
@@ -110,13 +100,14 @@
 					<!--{/if}-->
 				</div>
 		<!--{/if}-->
-
+		
+        <div class="kaiser_top_bg">
 		<!--{ad/headerbanner/wp a_h}-->
 		<div id="hd">
 			<div class="wp">
 				<div class="hdc cl">
 					<!--{eval $mnid = getcurrentnav();}-->
-					<h2><!--{if !isset($_G['setting']['navlogos'][$mnid])}--><a href="{if $_G['setting']['domain']['app']['default']}http://{$_G['setting']['domain']['app']['default']}/{else}./{/if}" title="$_G['setting']['bbname']">{$_G['style']['boardlogo']}</a><!--{else}-->$_G['setting']['navlogos'][$mnid]<!--{/if}--></h2>
+					<h2><!--{if !isset($_G['setting']['navlogos'][$mnid])}--><a href="{if $_G['setting']['domain']['app']['default']}http://{$_G['setting']['domain']['app']['default']}/{else}./{/if}" title="$_G['setting']['bbname']"><img src="/static/image/common/register_top_bg.jpg" /></a><!--{else}-->$_G['setting']['navlogos'][$mnid]<!--{/if}--></h2>
 
 					<!--{if $_G['uid']}-->
 					<div id="um">
@@ -125,7 +116,7 @@
 							<strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="home.php?mod=space&uid=$_G[uid]" target="_blank" title="{lang visit_my_space}">{$_G[member][username]}</a></strong>
 							<!--{if $_G['group']['allowinvisible']}-->
 							<span id="loginstatus">
-								<a id="loginstatusid" href="member.php?mod=switchstatus" title="{lang login_switch_invisible_mode}" onclick="ajaxget(this.href, 'loginstatus');return false;" class="xi2"></a>
+								<a id="loginstatusid" href="member.php?mod=switchstatus" title="{lang login_switch_invisible_mode}" onClick="ajaxget(this.href, 'loginstatus');return false;" class="xi2"></a>
 							</span>
 							<!--{/if}-->
 							<!--{hook/global_usernav_extra1}-->
@@ -151,14 +142,14 @@
 						<p>
 							<!--{hook/global_usernav_extra3}-->
 							<!--{eval $upgradecredit = $_G['uid'] && $_G['group']['grouptype'] == 'member' && $_G['group']['groupcreditslower'] != 999999999 ? $_G['group']['groupcreditslower'] - $_G['member']['credits'] : false;}-->
-							<a href="home.php?mod=spacecp&ac=credit&showcredit=1" id="extcreditmenu"{if !$_G[setting][bbclosed]} onmouseover="delayShow(this, showCreditmenu);" class="showmenu"{/if}>{lang credits}: $_G[member][credits]</a>
-							<span class="pipe">|</span>{lang usergroup}: <a href="home.php?mod=spacecp&ac=usergroup"{if $upgradecredit !== 'false'} id="g_upmine" class="xi2" onmouseover="delayShow(this, showUpgradeinfo)"{/if}>$_G[group][grouptitle]</a>
+							<a href="home.php?mod=spacecp&ac=credit&showcredit=1" id="extcreditmenu"{if !$_G[setting][bbclosed]} onMouseOver="delayShow(this, showCreditmenu);" class="showmenu"{/if}>{lang credits}: $_G[member][credits]</a>
+							<span class="pipe">|</span>{lang usergroup}: <a href="home.php?mod=spacecp&ac=usergroup"{if $upgradecredit !== 'false'} id="g_upmine" class="xi2" onMouseOver="delayShow(this, showUpgradeinfo)"{/if}>$_G[group][grouptitle]</a>
 						</p>
 					</div>
 					<!--{elseif !empty($_G['cookie']['loginuser'])}-->
 					<p>
 						<strong><a id="loginuser" class="noborder"><!--{echo dhtmlspecialchars($_G['cookie']['loginuser'])}--></a></strong>
-						<span class="pipe">|</span><a href="member.php?mod=logging&action=login" onclick="showWindow('login', this.href)">{lang activation}</a>
+						<span class="pipe">|</span><a href="member.php?mod=logging&action=login" onClick="showWindow('login', this.href)">{lang activation}</a>
 						<span class="pipe">|</span><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
 					</p>
 					<!--{elseif !$_G[connectguest]}-->
@@ -180,34 +171,23 @@
 				</div>
 
 				<div id="nv">
-					<a href="javascript:;" id="qmenu" onmouseover="showMenu({'ctrlid':'qmenu','pos':'34!','ctrlclass':'a','duration':2});">{lang my_nav}</a>
-					<ul>
-						<!--{loop $_G['setting']['navs'] $nav}-->
-							<!--{if $nav['available'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1))}--><li {if $mnid == $nav[navid]}class="a" {/if}$nav[nav]></li><!--{/if}-->
-						<!--{/loop}-->
-					</ul>
+                    <div class="bbs_nav_a">
+                        <p></p>
+                        <a href="#">三亚</a>　<a href="#">丽江</a>　<a href="#">厦门</a>　<a href="#">澳门</a>　<br /><a href="#">黄果树</a>　<a href="#">云南</a>　<a href="#">西双版纳</a>
+                    </div>                
+                    <div class="bbs_nav_b">
+                        <p></p>
+                        <a href="#">三亚</a>　<a href="#">丽江</a>　<a href="#">厦门</a>　<a href="#">澳门</a>　<br /><a href="#">黄果树</a>　<a href="#">云南</a>　<a href="#">西双版纳</a>
+                    </div>                    
+                    <div class="bbs_nav_c">
+                        <p></p>
+                        <a href="#">法国</a>　<a href="#">德国</a>　<a href="#">马来西亚</a>　<br /><a href="#">马尔代夫</a>　<a href="#">印度尼西亚</a>
+                    </div>                
+                    <div class="bbs_nav_d">
+                        <p></p>
+                        <a href="#">旅游答疑</a>　<a href="#">签证服务</a><br /><a href="#">热点问题</a>　<a href="#">出游宝典</a>
+                    </div>
 					<!--{hook/global_nav_extra}-->
-				</div>
-				<!--{if !empty($_G['setting']['plugins']['jsmenu'])}-->
-					<ul class="p_pop h_pop" id="plugin_menu" style="display: none">
-					<!--{loop $_G['setting']['plugins']['jsmenu'] $module}-->
-						 <!--{if !$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])}-->
-						 <li>$module[url]</li>
-						 <!--{/if}-->
-					<!--{/loop}-->
-					</ul>
-				<!--{/if}-->
-				$_G[setting][menunavs]
-				<div id="mu" class="cl">
-				<!--{if $_G['setting']['subnavs']}-->
-					<!--{loop $_G[setting][subnavs] $navid $subnav}-->
-						<!--{if $_G['setting']['navsubhover'] || $mnid == $navid}-->
-						<ul class="cl {if $mnid == $navid}current{/if}" id="snav_$navid" style="display:{if $mnid != $navid}none{/if}">
-						$subnav
-						</ul>
-						<!--{/if}-->
-					<!--{/loop}-->
-				<!--{/if}-->
 				</div>
 				<!--{ad/subnavbanner/a_mu}-->
 				<!--{subtemplate common/pubsearchform}-->
